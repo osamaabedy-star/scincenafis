@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>نافس سادس • علوم • مراجعة بالأسئلة</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #195d7a 0%, #0e4057 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 800px;
+      background: #fffef5;
+      border-radius: 45px 45px 30px 30px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.45);
+      border: 3px solid #f9b83c;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fae29e;
+      padding: 8px 18px;
+      border-bottom: 4px solid #cb952b;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-area img {
+      width: 48px;
+      height: auto;
+      border-radius: 30px;
+      border: 2px solid #b57c1c;
+      background: white;
+    }
+
+    .school-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #153e52;
+      line-height: 1.2;
+    }
+
+    .teacher-name {
+      background: #1e4e6f;
+      color: #faeebc;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: inset 0 -3px 0 #0c2d40;
+    }
+
+    .screen {
+      background: #fef9e7;
+      padding: 15px 18px 20px;
+    }
+
+    .title-box {
+      background: #f7b731;
+      text-align: center;
+      padding: 12px 5px;
+      border-radius: 40px;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1d3b4b;
+      margin: 5px 0 15px;
+    }
+
+    .input-group {
+      background: #d9eef5;
+      padding: 18px;
+      border-radius: 35px;
+      margin: 15px 0;
+    }
+    .input-group label {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 14px 25px;
+      font-size: 1.3rem;
+      border: 4px solid #31799b;
+      border-radius: 60px;
+    }
+
+    .btn {
+      background: #f4a261;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 60px;
+      width: 100%;
+      box-shadow: 0 8px 0 #9c5e2c;
+      cursor: pointer;
+      transition: 0.07s;
+      margin: 15px 0 5px;
+    }
+    .btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 #9c5e2c;
+    }
+
+    .test-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .test-btn {
+      background: #4a9b8c;
+      box-shadow: 0 8px 0 #1d6b5a;
+      font-size: 2rem;
+      padding: 20px;
+    }
+
+    .quiz-screen {
+      background: #fef9e7;
+      padding: 12px 15px 20px;
+      display: none;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      background: #ffe39f;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .timer {
+      background: #c53030;
+      color: white;
+      padding: 2px 20px;
+      border-radius: 40px;
+      font-family: monospace;
+      font-size: 1.7rem;
+    }
+
+    .score-badge {
+      background: #1f6d8f;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      background: #c8e7f5;
+      border-radius: 50px;
+      padding: 18px 15px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+      border: 3px solid #195d7a;
+      margin: 8px 0 15px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+
+    .option-btn {
+      background: #c8ddea;
+      border: 2px solid #1e4e6f;
+      border-radius: 40px;
+      padding: 12px 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      color: #0f2f40;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #577e98;
+      transition: 0.07s;
+      word-break: break-word;
+    }
+    .option-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 0px 0 #577e98;
+    }
+    .option-btn.selected {
+      background: #90c955;
+      border-color: #1f6d1f;
+      box-shadow: 0 4px 0 #1f6d1f;
+      color: white;
+    }
+
+    .explain-box {
+      background: #fef1c1;
+      border-radius: 35px;
+      padding: 12px 20px;
+      margin: 15px 0 5px;
+      font-size: 1.2rem;
+      border: 3px dashed #b8861e;
+      color: #1e3e4f;
+      line-height: 1.5;
+      display: none;
+    }
+    .explain-box.show {
+      display: block;
+    }
+
+    .certificate {
+      background: #fbf3d7;
+      border: 8px double #ca9e2b;
+      padding: 20px;
+      border-radius: 60px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .certificate h2 { font-size: 2.2rem; color: #7e551a; }
+    .student-rank {
+      font-size: 2rem;
+      background: gold;
+      display: inline-block;
+      padding: 8px 35px;
+      border-radius: 50px;
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ebf3f7;
+      border-radius: 30px;
+      overflow: hidden;
+      font-size: 0.9rem;
+      direction: rtl;
+    }
+    .review-table th { background: #1e4e6f; color: white; padding: 10px; }
+    .review-table td { border-bottom: 1px solid #aaa; padding: 10px 5px; vertical-align: top; }
+    .wrong-answer { background: #fad1d1; }
+    .correct-answer { background: #c8e6c9; }
+
+    .game-footer {
+      text-align: center;
+      padding: 10px 0 5px;
+      color: #ffde9c;
+      font-size: 1.1rem;
+      font-weight: bold;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 5px;
+    }
+    .game-footer span {
+      background: #0a3142b3;
+      padding: 5px 20px;
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+    }
+  </style>
+</head>
+<body>
+<div class="game-container" id="gameContainer">
+  <!-- شاشة البداية -->
+  <div id="startScreen" class="screen">
+    <div class="header">
+      <div class="logo-area">
+        <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار" onerror="this.src='https://via.placeholder.com/48?text=شعار'">
+        <span class="school-name">مدارس رياض الإبداع الأهلية</span>
+      </div>
+      <div class="teacher-name">هـشـام الـشـونـي</div>
+    </div>
+    <div class="title-box">🧪 نافس سادس (علوم)</div>
+    <div class="input-group">
+      <label>👤 اسم الطالب :</label>
+      <input type="text" id="studentNameInput" placeholder="أدخل اسمك ..." value="أسامة">
+    </div>
+    <div style="text-align:center; margin:20px 0 10px; font-size:1.6rem; font-weight:bold;">اختر الاختبار:</div>
+    <div class="test-selection">
+      <button class="btn test-btn" id="test1Btn" style="background:#2f8f7a;">📘 الاختبار الأول (25 سؤال)</button>
+      <button class="btn test-btn" id="test2Btn" style="background:#b47a3a;">📗 الاختبار الثاني (25 سؤال)</button>
+    </div>
+    <div style="font-size:1.1rem; text-align:center;">كل سؤال له شرح • انتقل بنفسك بعد القراءة</div>
+  </div>
+
+  <!-- شاشة اللعب -->
+  <div id="quizScreen" class="quiz-screen">
+    <div class="header">
+      <div class="logo-area">
+        <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار">
+        <span class="school-name">رياض الإبداع</span>
+      </div>
+      <div class="teacher-name">هشام الشوني</div>
+    </div>
+    <div class="progress-row">
+      <span id="questionCounter">س 1 / 25</span>
+      <span class="timer" id="timerDisplay">01:00</span>
+    </div>
+    <div class="score-badge" id="scoreDisplay">🏆 0 نقطة</div>
+    <div id="questionText" class="question-text">تحميل ...</div>
+    <div class="options-grid" id="optionsContainer"></div>
+    <div id="explainBox" class="explain-box"></div>
+    <button class="btn" id="nextBtn" style="background: #389e8a; box-shadow:0 7px 0 #1d6e5e;">⏩ التالي</button>
+  </div>
+
+  <!-- شاشة النهاية + الشهادة (بدون زر طباعة) -->
+  <div id="endScreen" class="screen" style="display:none;">
+    <div class="header">
+      <div class="logo-area">
+        <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار">
+        <span class="school-name">مدارس رياض الإبداع الأهلية</span>
+      </div>
+      <div class="teacher-name">أ/ هشام الشوني</div>
+    </div>
+    <div id="certificateArea"></div>
+    <button class="btn" id="showReviewBtn" style="background:#3684a3;">📋 مراجعة الإجابات</button>
+    <button class="btn" id="restartBtn" style="background:#b56532;">🔁 العودة للرئيسية</button>
+  </div>
+
+  <!-- شاشة المراجعة (مع عرض نص السؤال) -->
+  <div id="reviewScreen" class="screen" style="display:none;">
+    <h2 style="color:#1e4e6f; text-align:center;">📋 مراجعة الأسئلة والإجابات</h2>
+    <table class="review-table" id="reviewTable"></table>
+    <button class="btn" id="backToEndBtn">🔙 العودة للشهادة</button>
+  </div>
+</div>
+
+<!-- تذييل ثابت -->
+<div class="game-footer">
+  <span>مدارس رياض الإبداع الأهلية - نافس سادس (علوم) - </span>
+</div>
+
+<script>
+  (function(){
+    // بنك الأسئلة (50 سؤال)
+    const fullQuestions = [
+      { q: "ما يميز الصخور المتكونة ببطء شديد في الأعماق؟", opts: ["صغيرة الحبيبات", "خشنة الحبيبات", "ناعمة الملمس", "زجاجية الملمس"], correct: 1, exp: "الصخور التي تبرد ببطء في الأعماق تسمح بنمو بلورات كبيرة، فتكون خشنة الحبيبات." },
+      { q: "يوصف البركان بأنه بركان ساكن عندما:", opts: ["تندفع اللابة بهدوء", "تندفع الغازات فقط", "توقف عن الثوران وقد يثور مجدداً", "اندثر نهائياً"], correct: 2, exp: "البركان الساكن هو الذي توقف عن الثوران لكنه قد ينشط مجدداً مستقبلاً." },
+      { q: "أي مما يلي ليس من طرق المحافظة على التربة؟", opts: ["المصاطب المدرجة", "الأشرطة المتبادلة", "إزالة النباتات", "زراعة الأشجار"], correct: 2, exp: "إزالة النباتات تسبب تعرية التربة، بينما الطرق الأخرى تحافظ عليها." },
+      { q: "يرتبط تكون خزانات المياه الجوفية بـ:", opts: ["الصخور المتحولة", "البلورات", "الصخور النارية", "الصخور الرسوبية المسامية"], correct: 3, exp: "المياه الجوفية تتجمع في الصخور المسامية مثل الحجر الرملي." },
+      { q: "الطاقة الناتجة عن اهتزاز الأجسام هي طاقة:", opts: ["الكهرباء", "الصوت", "المغناطيس", "الضوء"], correct: 1, exp: "اهتزاز الأجسام ينتج موجات صوتية، فهي طاقة صوت." },
+      { q: "ما وحدة قياس القوة؟", opts: ["الكيلو", "النيوتن", "الجرام", "الباسكال"], correct: 1, exp: "النيوتن هو وحدة القوة، نسبة للعالم نيوتن." },
+      { q: "التعبير عن التغير الكيميائي بالحروف والأرقام يسمى:", opts: ["التعادل الكيميائي", "الرمز الكيميائي", "الخاصية الكيميائية", "المعادلة الكيميائية"], correct: 3, exp: "المعادلة الكيميائية تمثل التفاعل باستخدام رموز العناصر." },
+      { q: "عملية تخفض نسبة الكربون من الهواء:", opts: ["تثبيت النتروجين", "البناء الضوئي", "البرق", "التنفس"], correct: 1, exp: "النباتات تمتص ثاني أكسيد الكربون وتطلق أكسجين عبر البناء الضوئي." },
+      { q: "عملية الانتقال من تكاثر جنسي إلى لا جنسي تسمى:", opts: ["التلقيح", "تعاقب الأجيال", "الإخصاب", "الانشطار"], correct: 1, exp: "تعاقب الأجيال: طور جنسي وآخر لا جنسي مثل بعض الطحالب." },
+      { q: "ظاهرة تحدث بسبب الدورة اليومية للأرض:", opts: ["أطوار القمر", "خسوف القمر", "تعاقب الليل والنهار", "الفصول"], correct: 2, exp: "دوران الأرض حول محورها يسبب الليل والنهار." },
+      { q: "أسلاك الكهرباء تغطى بالمطاط لأنه:", opts: ["لا يوصل الكهرباء", "يوصل الكهرباء", "معدني", "يغناطيسي"], correct: 0, exp: "المطاط والبلاستيك عوازل، تمنع وصول التيار." },
+      { q: "قفز طالب من قارب يوضح قانون نيوتن:", opts: ["الأول", "الثاني", "الثالث", "الجذب"], correct: 2, exp: "لكل فعل رد فعل مساوٍ ومعاكس (القارب يندفع للخلف)." },
+      { q: "أي المواد التالية يذوب في الماء؟", opts: ["برادة الحديد", "نشارة خشب", "الرمل", "السكر"], correct: 3, exp: "السكر يذوب في الماء مكوناً محلولاً." },
+      { q: "أي العمليات تكون مخلوطاً (خضروات)؟", opts: ["تقطيع الخضار", "شواء الخضار", "طهي الخضار", "قلي الخضار"], correct: 0, exp: "التقطيع يغير الشكل فقط ويبقى مخلوطاً (خليط من قطع)." },
+      { q: "أكثر العناصر شيوعاً في النباتات والحيوانات:", opts: ["فسفور وكالسيوم", "بوتاسيوم وفسفور", "كربون وهيدروجين", "كبريت ونحاس"], correct: 2, exp: "الكربون والهيدروجين والأكسجين هي الأساس في المركبات العضوية." },
+      { q: "الترتيب الصحيح للتصنيف من الأعلى:", opts: ["مملكة-شعبة-فصيلة-طائفة", "شعبة-فصيلة-طائفة-جنس", "مملكة-شعبة-طائفة-رتبة-فصيلة-جنس-نوع", "مملكة-نوع-جنس-فصيلة"], correct: 2, exp: "التسلسل: مملكة، شعبة، طائفة، رتبة، فصيلة، جنس، نوع." },
+      { q: "تخزن الفضلات والغذاء داخل الخلية في:", opts: ["الفجوة العصارية", "النواة", "السيتوبلازم", "الغشاء"], correct: 0, exp: "الفجوة العصارية تخزن الماء والغذاء والفضلات." },
+      { q: "كائن يقوم بالتنفس والبناء الضوئي؟", opts: ["الفراشة", "الصبار", "الثعلب", "البكتيريا"], correct: 1, exp: "النبات (كالصبار) يقوم بالبناء الضوئي ويتبادل الغازات (تنفس)." },
+      { q: "مستويات التنظيم من الأصغر:", opts: ["فرد-جماعة-مجتمع-نظام بيئي", "نظام-جماعة-مجتمع", "أفراد-النظام-المجتمع", "أفراد-المجتمع"], correct: 0, exp: "الأصغر فرد، ثم جماعة، مجتمع حيوي، نظام بيئي." },
+      { q: "تكاثر بكتيريا E.coli:", opts: ["تبرعم", "اقتران", "انشطار ثنائي", "أبواغ"], correct: 2, exp: "البكتيريا تتكاثر لا جنسياً بالانشطار الثنائي." },
+      { q: "أكثر عامل تأثيراً في المناخ:", opts: ["خطوط الطول", "سقوط الأمطار", "دوائر العرض", "الضغط الجوي"], correct: 2, exp: "دوائر العرض تحدد كمية أشعة الشمس وبالتالي المناخ." },
+      { q: "إذا رأى محمد شمساً حارة، أي تعليمات يتبع؟", opts: ["يتناول سوائل", "يلعب وقت الظهر", "يلبس ثقيل", "مشروبات ساخنة"], correct: 0, exp: "في الحر يجب الإكثار من السوائل لتجنب الجفاف." },
+      { q: "الحيتان والدلافين تستخدم:", opts: ["الضوء", "الصدى", "الحرارة", "موجات الماء"], correct: 1, exp: "تستخدم تحديد الموقع بالصدى للتنقل والصيد." },
+      { q: "قانون الانعكاس: الضوء ينعكس", opts: ["بالزاوية نفسها", "بزاوية أكبر", "بزاوية أقل", "حسب اللون"], correct: 0, exp: "زاوية السقوط = زاوية الانعكاس." },
+      { q: "لماذا يقل الوزن بالارتفاع؟", opts: ["الجاذبية تقل", "الاحتكاك", "الكتلة", "الرفع"], correct: 0, exp: "الجاذبية تتناقص بالبعد عن الأرض." },
+      { q: "الأمراض الوراثية:", opts: ["بالبكتيريا", "بالفيروسات", "تنتقل من الأبوين", "بالمضادات"], correct: 2, exp: "الأمراض الوراثية تورث من الآباء عبر الجينات." },
+      { q: "إجراء عند مرض معدٍ:", opts: ["الحضور للمدرسة", "الجلوس بالخلف", "عدم الحضور للتعافي", "الحضور للحصص المهمة"], correct: 2, exp: "العزل المنزلي يمنع انتشار العدوى." },
+      { q: "اختلاف مناقير الطيور بسبب:", opts: ["ألوانها", "غذائها", "حجمها", "تكاثرها"], correct: 1, exp: "تتكيف المناقير حسب نوع الغذاء (بذور، حشرات...)." },
+      { q: "عملية النتح تنظمها:", opts: ["خلايا حارسة", "الكامبيوم", "الماء", "بشرة النبات"], correct: 0, exp: "الخلايا الحارسة تتحكم في فتح وإغلاق الثغور." },
+      { q: "صمامات الأوعية الدموية تسبب:", opts: ["تدفق باتجاه واحد", "من اليسار لليمين", "من اليسار فقط", "بالانتشار"], correct: 0, exp: "تمنع الصمامات ارتجاع الدم في الأوردة." },
+      { q: "صخور تتكون بالضغط والحرارة:", opts: ["الرسوبية", "النارية", "المتحولة", "البركانية"], correct: 2, exp: "التحول: صخور رسوبية أو نارية تتحول بفعل الضغط والحرارة." },
+      { q: "غاز البناء الضوئي:", opts: ["أكسجين", "ثاني أكسيد الكربون", "نيتروجين", "هيدروجين"], correct: 1, exp: "النباتات تمتص CO2 وتصنع غذاء." },
+      { q: "قانون نيوتن الثالث:", opts: ["الأول", "الثاني", "الثالث", "الجاذبية"], correct: 2, exp: "لكل فعل رد فعل." },
+      { q: "نقل الماء في النبات:", opts: ["الخشب", "اللحاء", "البشرة", "الكامبيوم"], correct: 0, exp: "الخشب ينقل الماء والأملاح." },
+      { q: "حيوان لا فقاري:", opts: ["النسر", "الأخطبوط", "الضفدع", "الحوت"], correct: 1, exp: "الأخطبوط رخوي لا فقاري." },
+      { q: "وحدة شدة الصوت:", opts: ["هرتز", "ديسيبل", "نيوتن", "جول"], correct: 1, exp: "الديسيبل لشدة الصوت، والهرتز للتردد." },
+      { q: "عوامل تتحكم في نمو النبات:", opts: ["العوامل المحددة", "الحيوية", "اللاحيوية", "النظام"], correct: 2, exp: "العوامل اللاحيوية: ضوء، ماء، تربة..." },
+      { q: "بخار الماء → ماء سائل:", opts: ["التبخر", "التكاثف", "الهطول", "النتح"], correct: 1, exp: "التكاثف تحول الغاز إلى سائل." },
+      { q: "أقرب كوكب للشمس:", opts: ["الأرض", "الزهرة", "عطارد", "المريخ"], correct: 2, exp: "عطارد هو الأقرب." },
+      { q: "يصنع غذاءه بنفسه:", opts: ["مستهلك", "محلل", "منتج", "قارت"], correct: 2, exp: "النباتات منتجات تقوم بالبناء الضوئي." },
+      { q: "جهاز توزيع الأكسجين:", opts: ["التنفسي", "الدوري", "العصبي", "الهضمي"], correct: 1, exp: "الجهاز الدوري (القلب والأوعية) ينقل الأكسجين." },
+      { q: "حجم ثابت وشكل غير ثابت:", opts: ["صلبة", "سائلة", "غازية", "بلازما"], correct: 1, exp: "السوائل تأخذ شكل الإناء." },
+      { q: "حيوان يغطي جسمه الشعر ويرضع صغاره:", opts: ["الزواحف", "الطيور", "الثدييات", "البرمائيات"], correct: 2, exp: "الثدييات فقط." },
+      { q: "انتقال حبوب اللقاح:", opts: ["الإخصاب", "الإنبات", "التلقيح", "التكاثر"], correct: 2, exp: "التلقيح انتقال حبوب اللقاح من متك إلى ميسم." },
+      { q: "سبب الفصول الأربعة:", opts: ["دوران الأرض حول محورها", "دوران الأرض حول الشمس", "دوران القمر", "ميل المحور أثناء الدوران حول الشمس"], correct: 3, exp: "ميل المحور هو السبب الرئيسي." },
+      { q: "طبقة الأوزون في:", opts: ["التروبوسفير", "الستراتوسفير", "الميزوسفير", "الثرموسفير"], correct: 1, exp: "طبقة الستراتوسفير تحتوي على الأوزون." },
+      { q: "موصلات للتيار:", opts: ["عوازل", "موصلات", "مغناطيس", "مقاومات"], correct: 1, exp: "الموصلات تسمح بمرور الكهرباء." },
+      { q: "عضو في الجهاز الهضمي:", opts: ["القلب", "الرئتان", "المعدة", "الكلى"], correct: 2, exp: "المعدة جزء من القناة الهضمية." },
+      { q: "يتكون الماء من:", opts: ["هيدروجين وأكسجين", "هيدروجين ونيتروجين", "أكسجين وكربون", "أكسجين وهيدروجين وكربون"], correct: 0, exp: "H2O ذرتا هيدروجين وذرة أكسجين." },
+      { q: "مركب يمد النبات بالنيتروجين:", opts: ["النترات", "الفوسفات", "الكربوهيدرات", "الكلوروفيل"], correct: 0, exp: "النترات تمتصها الجذور لصنع البروتين." }
+    ];
+    while(fullQuestions.length < 50) {
+      fullQuestions.push({ q: "البناء الضوئي يحتاج إلى:", opts: ["أكسجين وضوء", "ماء وCO2 وضوء", "تربة وضوء", "ماء وأكسجين"], correct: 1, exp: "النبات يحتاج ماء + ثاني أكسيد كربون + ضوء." });
+    }
+
+    const test1Questions = fullQuestions.slice(0, 25);
+    const test2Questions = fullQuestions.slice(25, 50);
+
+    let currentQuestions = [];
+    let student = { name: '', score: 0, answers: [] };
+    let currentIndex = 0;
+    let timerInterval;
+    let timeLeft = 60;
+    let canAnswer = true;
+    let answered = false;
+
+    // عناصر
+    const startScreen = document.getElementById('startScreen');
+    const quizScreen = document.getElementById('quizScreen');
+    const endScreen = document.getElementById('endScreen');
+    const reviewScreen = document.getElementById('reviewScreen');
+    const nextBtn = document.getElementById('nextBtn');
+    const questionCounter = document.getElementById('questionCounter');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const explainBox = document.getElementById('explainBox');
+    const studentNameInput = document.getElementById('studentNameInput');
+
+    function stopTimer() { if(timerInterval) clearInterval(timerInterval); }
+
+    function startTimer() {
+      timeLeft = 60; canAnswer = true; answered = false;
+      timerDisplay.textContent = '01:00';
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        let sec = timeLeft < 10 ? '0'+timeLeft : timeLeft;
+        timerDisplay.textContent = `00:${sec}`;
+        if(timeLeft <= 0 && canAnswer && !answered) {
+          stopTimer();
+          canAnswer = false; answered = true;
+          student.answers[currentIndex] = -1;
+          showExplanation(-1);
+        }
+      }, 1000);
+    }
+
+    function showExplanation(selectedIdx) {
+      let q = currentQuestions[currentIndex];
+      let isCorrect = (selectedIdx === q.correct);
+      let expText = q.exp || (isCorrect ? 'إجابة صحيحة!' : 'الإجابة الصحيحة: ' + q.opts[q.correct]);
+      explainBox.innerHTML = `<strong>${isCorrect ? '✅' : '❌'} ${expText}</strong>`;
+      explainBox.classList.add('show');
+    }
+
+    function loadQuestion(index) {
+      stopTimer();
+      startTimer();
+      explainBox.classList.remove('show');
+      answered = false;
+      let q = currentQuestions[index];
+      questionCounter.textContent = `س ${index+1} / ${currentQuestions.length}`;
+      questionText.textContent = q.q;
+      optionsContainer.innerHTML = '';
+      q.opts.forEach((opt, idx) => {
+        let btn = document.createElement('div');
+        btn.classList.add('option-btn');
+        btn.textContent = opt;
+        btn.dataset.opt = idx;
+        btn.addEventListener('click', function handler(e) {
+          if(!canAnswer || answered) return;
+          document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          stopTimer();
+          canAnswer = false; answered = true;
+          let selected = idx;
+          student.answers[index] = selected;
+          if(selected === q.correct) {
+            student.score += 1;
+            scoreDisplay.textContent = `🏆 ${student.score} نقطة`;
+          }
+          showExplanation(selected);
+        });
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function finishQuiz() { stopTimer(); displayEndScreen(); }
+
+    function displayEndScreen() {
+      quizScreen.style.display = 'none';
+      endScreen.style.display = 'block';
+      reviewScreen.style.display = 'none';
+      let name = student.name || 'الطالب';
+      let total = student.score;
+      let percent = (total/currentQuestions.length)*100;
+      let rank = percent>=90 ? 'ممتاز 🥇' : percent>=75 ? 'جيد جداً 🥈' : percent>=50 ? 'جيد 🥉' : 'تحتاج مراجعة 📘';
+      document.getElementById('certificateArea').innerHTML = `<div class="certificate"><h2>📜 شهادة تقدير</h2><p style="font-size:1.6rem;">مدارس رياض الإبداع</p><h1 style="font-size:3rem;">${name}</h1><p>الصف: سادس  |  الدرجة: ${total} / ${currentQuestions.length}</p><div class="student-rank">${rank}</div><p style="margin:15px;">المعلم: هشام الشوني</p><p>⭐ اجتهد وستبدع ⭐</p></div>`;
+    }
+
+    // دالة بناء جدول المراجعة مع عرض نص السؤال
+    function buildReviewTable() {
+      let html = '<tr><th>السؤال</th><th>إجابة الطالب</th><th>الإجابة الصحيحة</th><th>شرح مبسط</th></tr>';
+      currentQuestions.forEach((q, idx) => {
+        let ans = student.answers[idx];
+        let userTxt = (ans===null || ans===-1) ? 'لم يجب' : q.opts[ans];
+        let correctTxt = q.opts[q.correct];
+        let rowClass = (ans===q.correct) ? 'correct-answer' : 'wrong-answer';
+        html += `<tr class="${rowClass}"><td><strong>س${idx+1}:</strong> ${q.q}</td><td>${userTxt}</td><td>${correctTxt}</td><td>${q.exp || ''}</td></tr>`;
+      });
+      document.getElementById('reviewTable').innerHTML = html;
+    }
+
+    function startTest(questionsList) {
+      let sName = studentNameInput.value.trim();
+      if(!sName) sName = 'طالب';
+      student.name = sName;
+      student.score = 0;
+      student.answers = new Array(questionsList.length).fill(null);
+      currentQuestions = questionsList;
+      currentIndex = 0;
+      scoreDisplay.textContent = '🏆 0 نقطة';
+      startScreen.style.display = 'none';
+      quizScreen.style.display = 'block';
+      endScreen.style.display = 'none';
+      reviewScreen.style.display = 'none';
+      loadQuestion(0);
+    }
+
+    // الأحداث
+    document.getElementById('test1Btn').addEventListener('click', ()=>{ startTest(test1Questions); });
+    document.getElementById('test2Btn').addEventListener('click', ()=>{ startTest(test2Questions); });
+
+    nextBtn.addEventListener('click', ()=>{
+      if(!answered && canAnswer) {
+        stopTimer();
+        answered = true; canAnswer = false;
+        student.answers[currentIndex] = -1;
+        showExplanation(-1);
+      } else {
+        if(currentIndex < currentQuestions.length - 1) {
+          currentIndex++;
+          loadQuestion(currentIndex);
+        } else {
+          finishQuiz();
+        }
+      }
+    });
+
+    document.getElementById('showReviewBtn').addEventListener('click', ()=>{ buildReviewTable(); endScreen.style.display='none'; reviewScreen.style.display='block'; });
+    document.getElementById('backToEndBtn').addEventListener('click', ()=>{ reviewScreen.style.display='none'; endScreen.style.display='block'; });
+    document.getElementById('restartBtn').addEventListener('click', ()=>{
+      startScreen.style.display='block'; quizScreen.style.display='none'; endScreen.style.display='none'; reviewScreen.style.display='none'; stopTimer();
+    });
+  })();
+</script>
+</body>
+</html>
