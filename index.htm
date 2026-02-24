@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>نافس سادس • علوم • مراجعة بالأسئلة</title>
+  <title>نافس سادس • علوم •</title>
   <style>
     * {
       margin: 0;
@@ -13,104 +13,245 @@
     }
 
     body {
-      background: linear-gradient(145deg, #195d7a 0%, #0e4057 100%);
+      background: linear-gradient(145deg, #13678e 0%, #0a4b6b 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 8px;
     }
 
     .game-container {
       width: 100%;
-      max-width: 800px;
-      background: #fffef5;
-      border-radius: 45px 45px 30px 30px;
-      box-shadow: 0 20px 30px rgba(0,0,0,0.45);
-      border: 3px solid #f9b83c;
+      max-width: 750px;
+      background: #ffffff;
+      border-radius: 40px 40px 25px 25px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.4), 0 8px 10px rgba(0,0,0,0.2);
+      border: 1px solid #f3b33d;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
 
+    /* الهيدر أنيق */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #fae29e;
-      padding: 8px 18px;
-      border-bottom: 4px solid #cb952b;
+      background: #fbe39f;
+      padding: 8px 20px;
+      border-bottom: 2px solid #d49b2a;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .logo-area img {
-      width: 48px;
+      width: 42px;
       height: auto;
       border-radius: 30px;
-      border: 2px solid #b57c1c;
+      border: 2px solid #b8861e;
       background: white;
     }
 
     .school-name {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #153e52;
-      line-height: 1.2;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1d4c65;
     }
 
     .teacher-name {
       background: #1e4e6f;
-      color: #faeebc;
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-size: 1rem;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: inset 0 -3px 0 #0c2d40;
+      color: #fbe39f;
+      padding: 5px 18px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: inset 0 -2px 0 #0e3142;
     }
 
+    /* الصفحة الرئيسية الأنيقة */
     .screen {
-      background: #fef9e7;
-      padding: 15px 18px 20px;
+      background: #fefcf0;
+      padding: 20px 20px 25px;
     }
 
     .title-box {
-      background: #f7b731;
+      background: #f5b62e;
       text-align: center;
-      padding: 12px 5px;
-      border-radius: 40px;
+      padding: 10px 5px;
+      border-radius: 50px;
       font-size: 2rem;
       font-weight: 800;
-      color: #1d3b4b;
-      margin: 5px 0 15px;
+      color: #1f3f50;
+      margin: 0 0 15px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 0 #b87d19;
     }
 
     .input-group {
-      background: #d9eef5;
+      background: #e3f0f5;
       padding: 18px;
       border-radius: 35px;
       margin: 15px 0;
     }
     .input-group label {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 600;
       display: block;
-      margin-bottom: 8px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      color: #0e4760;
     }
     .input-group input {
       width: 100%;
-      padding: 14px 25px;
-      font-size: 1.3rem;
-      border: 4px solid #31799b;
-      border-radius: 60px;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      border: 2px solid #2f789c;
+      border-radius: 50px;
+      outline: none;
     }
 
+    .test-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .test-btn {
+      background: #359f8b;
+      border: none;
+      color: white;
+      font-size: 1.7rem;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 60px;
+      box-shadow: 0 7px 0 #1a695b;
+      cursor: pointer;
+      transition: 0.07s;
+    }
+    .test-btn:active { transform: translateY(5px); box-shadow: 0 2px 0 #1a695b; }
+    .test-btn:first-child { background: #4799b3; box-shadow: 0 7px 0 #1e5e77; }
+
+    /* شاشة السؤال بدون مربع للسؤال */
+    .quiz-screen {
+      background: #fefcf0;
+      padding: 15px 18px 20px;
+      display: none;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      background: #fce5a3;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .timer {
+      background: #c0392b;
+      color: white;
+      padding: 2px 22px;
+      border-radius: 40px;
+      font-family: monospace;
+      font-size: 1.6rem;
+    }
+
+    .score-badge {
+      background: #206f94;
+      color: white;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* نص السؤال بدون مربع */
+    .question-text {
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      color: #124257;
+      padding: 10px 0 15px;
+      background: transparent;
+      border: none;
+    }
+
+    /* الخيارات في مربعات */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 15px;
+    }
+
+    .option-btn {
+      background: #d4e7f2;
+      border: 2px solid #1e4e6f;
+      border-radius: 40px;
+      padding: 15px 5px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      color: #0c3d53;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #638ea6;
+      transition: 0.07s;
+    }
+    .option-btn:active { transform: translateY(4px); box-shadow: 0 0px 0 #638ea6; }
+
+    /* تلوين الإجابات */
+    .option-btn.correct { background: #27ae60; border-color: #1e7e4a; color: white; box-shadow: 0 4px 0 #1a5e38; }
+    .option-btn.wrong { background: #e74c3c; border-color: #a93226; color: white; box-shadow: 0 4px 0 #852f26; }
+
+    /* نافذة منبثقة للشرح عند الخطأ */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fef9e0;
+      border-radius: 50px;
+      padding: 25px 30px;
+      max-width: 400px;
+      text-align: center;
+      border: 6px solid #f39c12;
+      box-shadow: 0 15px 25px #00000055;
+    }
+    .modal-content p {
+      font-size: 1.5rem;
+      color: #1d3b4b;
+      margin: 10px 0;
+    }
+    .modal-content button {
+      background: #f4a261;
+      border: none;
+      font-size: 1.5rem;
+      padding: 10px 35px;
+      border-radius: 40px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 5px 0 #9c5e2c;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .modal-content button:active { transform: translateY(4px); box-shadow: 0 1px 0 #9c5e2c; }
+
+    /* بقية الشاشات */
     .btn {
       background: #f4a261;
       border: none;
@@ -120,142 +261,19 @@
       padding: 12px 20px;
       border-radius: 60px;
       width: 100%;
-      box-shadow: 0 8px 0 #9c5e2c;
+      box-shadow: 0 7px 0 #9c5e2c;
       cursor: pointer;
-      transition: 0.07s;
-      margin: 15px 0 5px;
+      margin: 10px 0;
     }
-    .btn:active {
-      transform: translateY(6px);
-      box-shadow: 0 2px 0 #9c5e2c;
-    }
-
-    .test-selection {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin: 20px 0;
-    }
-    .test-btn {
-      background: #4a9b8c;
-      box-shadow: 0 8px 0 #1d6b5a;
-      font-size: 2rem;
-      padding: 20px;
-    }
-
-    .quiz-screen {
-      background: #fef9e7;
-      padding: 12px 15px 20px;
-      display: none;
-    }
-
-    .progress-row {
-      display: flex;
-      justify-content: space-between;
-      background: #ffe39f;
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .timer {
-      background: #c53030;
-      color: white;
-      padding: 2px 20px;
-      border-radius: 40px;
-      font-family: monospace;
-      font-size: 1.7rem;
-    }
-
-    .score-badge {
-      background: #1f6d8f;
-      color: white;
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-size: 1.4rem;
-      font-weight: 700;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-
-    .question-text {
-      background: #c8e7f5;
-      border-radius: 50px;
-      padding: 18px 15px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.4;
-      text-align: center;
-      border: 3px solid #195d7a;
-      margin: 8px 0 15px;
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 10px 0 12px;
-    }
-
-    .option-btn {
-      background: #c8ddea;
-      border: 2px solid #1e4e6f;
-      border-radius: 40px;
-      padding: 12px 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-align: center;
-      color: #0f2f40;
-      cursor: pointer;
-      box-shadow: 0 4px 0 #577e98;
-      transition: 0.07s;
-      word-break: break-word;
-    }
-    .option-btn:active {
-      transform: translateY(4px);
-      box-shadow: 0 0px 0 #577e98;
-    }
-    .option-btn.selected {
-      background: #90c955;
-      border-color: #1f6d1f;
-      box-shadow: 0 4px 0 #1f6d1f;
-      color: white;
-    }
-
-    .explain-box {
-      background: #fef1c1;
-      border-radius: 35px;
-      padding: 12px 20px;
-      margin: 15px 0 5px;
-      font-size: 1.2rem;
-      border: 3px dashed #b8861e;
-      color: #1e3e4f;
-      line-height: 1.5;
-      display: none;
-    }
-    .explain-box.show {
-      display: block;
-    }
+    .btn:active { transform: translateY(5px); box-shadow: 0 2px 0 #9c5e2c; }
 
     .certificate {
       background: #fbf3d7;
       border: 8px double #ca9e2b;
       padding: 20px;
       border-radius: 60px;
-      margin: 10px 0;
       text-align: center;
     }
-    .certificate h2 { font-size: 2.2rem; color: #7e551a; }
-    .student-rank {
-      font-size: 2rem;
-      background: gold;
-      display: inline-block;
-      padding: 8px 35px;
-      border-radius: 50px;
-    }
-
     .review-table {
       width: 100%;
       border-collapse: collapse;
@@ -263,54 +281,43 @@
       border-radius: 30px;
       overflow: hidden;
       font-size: 0.9rem;
-      direction: rtl;
     }
-    .review-table th { background: #1e4e6f; color: white; padding: 10px; }
-    .review-table td { border-bottom: 1px solid #aaa; padding: 10px 5px; vertical-align: top; }
+    .review-table th { background: #1e4e6f; color: white; padding: 8px; }
+    .review-table td { border-bottom: 1px solid #aaa; padding: 8px 4px; }
     .wrong-answer { background: #fad1d1; }
     .correct-answer { background: #c8e6c9; }
 
     .game-footer {
       text-align: center;
-      padding: 10px 0 5px;
-      color: #ffde9c;
-      font-size: 1.1rem;
-      font-weight: bold;
+      padding: 8px 0 2px;
+      color: #ffe8b5;
+      font-size: 1rem;
       width: 100%;
-      max-width: 800px;
-      margin-top: 5px;
+      max-width: 750px;
     }
-    .game-footer span {
-      background: #0a3142b3;
-      padding: 5px 20px;
-      border-radius: 40px;
-      display: inline-block;
-      backdrop-filter: blur(2px);
-    }
+    .game-footer span { background: #0a2f40b3; padding: 5px 18px; border-radius: 40px; display: inline-block; }
   </style>
 </head>
 <body>
-<div class="game-container" id="gameContainer">
+<div class="game-container">
   <!-- شاشة البداية -->
   <div id="startScreen" class="screen">
     <div class="header">
       <div class="logo-area">
-        <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار" onerror="this.src='https://via.placeholder.com/48?text=شعار'">
+        <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار" onerror="this.src='https://via.placeholder.com/42?text=شعار'">
         <span class="school-name">مدارس رياض الإبداع الأهلية</span>
       </div>
       <div class="teacher-name">هـشـام الـشـونـي</div>
     </div>
-    <div class="title-box">🧪 نافس سادس (علوم)</div>
+    <div class="title-box">🧪(علوم) نافس سادس</div>
     <div class="input-group">
-      <label>👤 اسم الطالب :</label>
-      <input type="text" id="studentNameInput" placeholder="أدخل اسمك ..." value="أسامة">
+      <label>👤 اسم الطالب</label>
+      <input type="text" id="studentNameInput" placeholder="أدخل اسمك" value="  ">
     </div>
-    <div style="text-align:center; margin:20px 0 10px; font-size:1.6rem; font-weight:bold;">اختر الاختبار:</div>
     <div class="test-selection">
-      <button class="btn test-btn" id="test1Btn" style="background:#2f8f7a;">📘 الاختبار الأول (25 سؤال)</button>
-      <button class="btn test-btn" id="test2Btn" style="background:#b47a3a;">📗 الاختبار الثاني (25 سؤال)</button>
+      <button class="test-btn" id="test1Btn">📘 الاختبار الأول (٢٥ سؤال)</button>
+      <button class="test-btn" id="test2Btn">📗 الاختبار الثاني (٢٥ سؤال)</button>
     </div>
-    <div style="font-size:1.1rem; text-align:center;">كل سؤال له شرح • انتقل بنفسك بعد القراءة</div>
   </div>
 
   <!-- شاشة اللعب -->
@@ -323,46 +330,53 @@
       <div class="teacher-name">هشام الشوني</div>
     </div>
     <div class="progress-row">
-      <span id="questionCounter">س 1 / 25</span>
-      <span class="timer" id="timerDisplay">01:00</span>
+      <span id="questionCounter">س ١ / ٢٥</span>
+      <span class="timer" id="timerDisplay">٠١:٠٠</span>
     </div>
-    <div class="score-badge" id="scoreDisplay">🏆 0 نقطة</div>
+    <div class="score-badge" id="scoreDisplay">🏆 ٠ نقطة</div>
     <div id="questionText" class="question-text">تحميل ...</div>
     <div class="options-grid" id="optionsContainer"></div>
-    <div id="explainBox" class="explain-box"></div>
-    <button class="btn" id="nextBtn" style="background: #389e8a; box-shadow:0 7px 0 #1d6e5e;">⏩ التالي</button>
+    <button class="btn" id="nextBtn">⏩ التالي</button>
   </div>
 
-  <!-- شاشة النهاية + الشهادة (بدون زر طباعة) -->
+  <!-- شاشة النهاية -->
   <div id="endScreen" class="screen" style="display:none;">
     <div class="header">
       <div class="logo-area">
         <img src="https://www.wzufa.com/wp-content/uploads/2022/07/Riyadh-Al-Ebdaa-Schools.png" alt="شعار">
         <span class="school-name">مدارس رياض الإبداع الأهلية</span>
       </div>
-      <div class="teacher-name">أ/ هشام الشوني</div>
+      <div class="teacher-name">هشام الشوني</div>
     </div>
     <div id="certificateArea"></div>
     <button class="btn" id="showReviewBtn" style="background:#3684a3;">📋 مراجعة الإجابات</button>
     <button class="btn" id="restartBtn" style="background:#b56532;">🔁 العودة للرئيسية</button>
   </div>
 
-  <!-- شاشة المراجعة (مع عرض نص السؤال) -->
+  <!-- شاشة المراجعة -->
   <div id="reviewScreen" class="screen" style="display:none;">
-    <h2 style="color:#1e4e6f; text-align:center;">📋 مراجعة الأسئلة والإجابات</h2>
+    <h2 style="color:#1e4e6f;">📋 جميع الأسئلة</h2>
     <table class="review-table" id="reviewTable"></table>
-    <button class="btn" id="backToEndBtn">🔙 العودة للشهادة</button>
+    <button class="btn" id="backToEndBtn">🔙 العودة</button>
   </div>
 </div>
 
-<!-- تذييل ثابت -->
+<!-- النافذة المنبثقة للشرح (تظهر فقط عند الخطأ) -->
+<div id="explainModal" class="modal-overlay">
+  <div class="modal-content">
+    <p id="modalExplainText"></p>
+    <button id="closeModalBtn">حسناً</button>
+  </div>
+</div>
+
+<!-- تذييل -->
 <div class="game-footer">
-  <span>مدارس رياض الإبداع الأهلية - نافس سادس (علوم) - </span>
+  <span> مدارس رياض الإبداع  الأهلية  / برنامج نافس المحاكي  - :  </span>
 </div>
 
 <script>
   (function(){
-    // بنك الأسئلة (50 سؤال)
+    // بنك 50 سؤال مع الشروح
     const fullQuestions = [
       { q: "ما يميز الصخور المتكونة ببطء شديد في الأعماق؟", opts: ["صغيرة الحبيبات", "خشنة الحبيبات", "ناعمة الملمس", "زجاجية الملمس"], correct: 1, exp: "الصخور التي تبرد ببطء في الأعماق تسمح بنمو بلورات كبيرة، فتكون خشنة الحبيبات." },
       { q: "يوصف البركان بأنه بركان ساكن عندما:", opts: ["تندفع اللابة بهدوء", "تندفع الغازات فقط", "توقف عن الثوران وقد يثور مجدداً", "اندثر نهائياً"], correct: 2, exp: "البركان الساكن هو الذي توقف عن الثوران لكنه قد ينشط مجدداً مستقبلاً." },
@@ -415,12 +429,10 @@
       { q: "يتكون الماء من:", opts: ["هيدروجين وأكسجين", "هيدروجين ونيتروجين", "أكسجين وكربون", "أكسجين وهيدروجين وكربون"], correct: 0, exp: "H2O ذرتا هيدروجين وذرة أكسجين." },
       { q: "مركب يمد النبات بالنيتروجين:", opts: ["النترات", "الفوسفات", "الكربوهيدرات", "الكلوروفيل"], correct: 0, exp: "النترات تمتصها الجذور لصنع البروتين." }
     ];
-    while(fullQuestions.length < 50) {
-      fullQuestions.push({ q: "البناء الضوئي يحتاج إلى:", opts: ["أكسجين وضوء", "ماء وCO2 وضوء", "تربة وضوء", "ماء وأكسجين"], correct: 1, exp: "النبات يحتاج ماء + ثاني أكسيد كربون + ضوء." });
-    }
+    while(fullQuestions.length < 50) fullQuestions.push({ q: "البناء الضوئي يحتاج إلى:", opts: ["أكسجين وضوء", "ماء وCO2 وضوء", "تربة وضوء", "ماء وأكسجين"], correct: 1, exp: "النبات يحتاج ماء + ثاني أكسيد كربون + ضوء." });
 
-    const test1Questions = fullQuestions.slice(0, 25);
-    const test2Questions = fullQuestions.slice(25, 50);
+    const test1 = fullQuestions.slice(0,25);
+    const test2 = fullQuestions.slice(25,50);
 
     let currentQuestions = [];
     let student = { name: '', score: 0, answers: [] };
@@ -441,39 +453,51 @@
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionText = document.getElementById('questionText');
     const optionsContainer = document.getElementById('optionsContainer');
-    const explainBox = document.getElementById('explainBox');
-    const studentNameInput = document.getElementById('studentNameInput');
+    const nameInput = document.getElementById('studentNameInput');
+    const modal = document.getElementById('explainModal');
+    const modalText = document.getElementById('modalExplainText');
+    const closeModal = document.getElementById('closeModalBtn');
 
     function stopTimer() { if(timerInterval) clearInterval(timerInterval); }
 
     function startTimer() {
       timeLeft = 60; canAnswer = true; answered = false;
-      timerDisplay.textContent = '01:00';
+      timerDisplay.textContent = '٠١:٠٠';
       timerInterval = setInterval(() => {
         timeLeft--;
-        let sec = timeLeft < 10 ? '0'+timeLeft : timeLeft;
-        timerDisplay.textContent = `00:${sec}`;
+        let sec = timeLeft < 10 ? '٠'+timeLeft : timeLeft;
+        timerDisplay.textContent = `٠٠:${sec}`;
         if(timeLeft <= 0 && canAnswer && !answered) {
           stopTimer();
           canAnswer = false; answered = true;
           student.answers[currentIndex] = -1;
-          showExplanation(-1);
+          showAnswerFeedback(-1);
         }
       }, 1000);
     }
 
-    function showExplanation(selectedIdx) {
+    function showAnswerFeedback(selectedIdx) {
       let q = currentQuestions[currentIndex];
-      let isCorrect = (selectedIdx === q.correct);
-      let expText = q.exp || (isCorrect ? 'إجابة صحيحة!' : 'الإجابة الصحيحة: ' + q.opts[q.correct]);
-      explainBox.innerHTML = `<strong>${isCorrect ? '✅' : '❌'} ${expText}</strong>`;
-      explainBox.classList.add('show');
+      let correctIdx = q.correct;
+      let allOptions = document.querySelectorAll('.option-btn');
+      // إزالة أي تلوين سابق
+      allOptions.forEach(btn => btn.classList.remove('correct', 'wrong'));
+      // تلوين الصحيح أخضر
+      allOptions[correctIdx].classList.add('correct');
+      // إذا كانت الإجابة خاطئة، لوّن المختار أحمر وأظهر المودال
+      if(selectedIdx !== correctIdx) {
+        if(selectedIdx !== -1) allOptions[selectedIdx].classList.add('wrong');
+        modalText.innerText = q.exp;
+        modal.style.display = 'flex';
+      } else {
+        // إذا كانت الإجابة صحيحة، لا نظهر المودال
+        // يمكن إضافة رسالة صغيرة لكن المطلوب المودال فقط للخطأ
+      }
     }
 
     function loadQuestion(index) {
       stopTimer();
       startTimer();
-      explainBox.classList.remove('show');
       answered = false;
       let q = currentQuestions[index];
       questionCounter.textContent = `س ${index+1} / ${currentQuestions.length}`;
@@ -486,17 +510,13 @@
         btn.dataset.opt = idx;
         btn.addEventListener('click', function handler(e) {
           if(!canAnswer || answered) return;
-          document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
           stopTimer();
           canAnswer = false; answered = true;
           let selected = idx;
           student.answers[index] = selected;
-          if(selected === q.correct) {
-            student.score += 1;
-            scoreDisplay.textContent = `🏆 ${student.score} نقطة`;
-          }
-          showExplanation(selected);
+          if(selected === q.correct) student.score += 1;
+          scoreDisplay.textContent = `🏆 ${student.score} نقطة`;
+          showAnswerFeedback(selected);
         });
         optionsContainer.appendChild(btn);
       });
@@ -512,24 +532,23 @@
       let total = student.score;
       let percent = (total/currentQuestions.length)*100;
       let rank = percent>=90 ? 'ممتاز 🥇' : percent>=75 ? 'جيد جداً 🥈' : percent>=50 ? 'جيد 🥉' : 'تحتاج مراجعة 📘';
-      document.getElementById('certificateArea').innerHTML = `<div class="certificate"><h2>📜 شهادة تقدير</h2><p style="font-size:1.6rem;">مدارس رياض الإبداع</p><h1 style="font-size:3rem;">${name}</h1><p>الصف: سادس  |  الدرجة: ${total} / ${currentQuestions.length}</p><div class="student-rank">${rank}</div><p style="margin:15px;">المعلم: هشام الشوني</p><p>⭐ اجتهد وستبدع ⭐</p></div>`;
+      document.getElementById('certificateArea').innerHTML = `<div class="certificate"><h2>📜 شهادة تقدير</h2><p style="font-size:1.6rem;">مدارس رياض الإبداع</p><h1 style="font-size:3rem;">${name}</h1><p>الصف: سادس  |  الدرجة: ${total} / ${currentQuestions.length}</p><div class="student-rank" style="background:gold; padding:8px 30px; border-radius:50px; display:inline-block;">${rank}</div><p style="margin:15px;">المعلم: هشام الشوني</p></div>`;
     }
 
-    // دالة بناء جدول المراجعة مع عرض نص السؤال
     function buildReviewTable() {
-      let html = '<tr><th>السؤال</th><th>إجابة الطالب</th><th>الإجابة الصحيحة</th><th>شرح مبسط</th></tr>';
+      let html = '<tr><th>السؤال</th><th>إجابة الطالب</th><th>الصحيحة</th><th>شرح</th></tr>';
       currentQuestions.forEach((q, idx) => {
         let ans = student.answers[idx];
-        let userTxt = (ans===null || ans===-1) ? 'لم يجب' : q.opts[ans];
+        let userTxt = (ans===null||ans===-1)?'لم يجب':q.opts[ans];
         let correctTxt = q.opts[q.correct];
-        let rowClass = (ans===q.correct) ? 'correct-answer' : 'wrong-answer';
-        html += `<tr class="${rowClass}"><td><strong>س${idx+1}:</strong> ${q.q}</td><td>${userTxt}</td><td>${correctTxt}</td><td>${q.exp || ''}</td></tr>`;
+        let rowClass = (ans===q.correct)?'correct-answer':'wrong-answer';
+        html += `<tr class="${rowClass}"><td><strong>س${idx+1}:</strong> ${q.q}</td><td>${userTxt}</td><td>${correctTxt}</td><td>${q.exp||''}</td></tr>`;
       });
       document.getElementById('reviewTable').innerHTML = html;
     }
 
     function startTest(questionsList) {
-      let sName = studentNameInput.value.trim();
+      let sName = nameInput.value.trim();
       if(!sName) sName = 'طالب';
       student.name = sName;
       student.score = 0;
@@ -544,16 +563,16 @@
       loadQuestion(0);
     }
 
-    // الأحداث
-    document.getElementById('test1Btn').addEventListener('click', ()=>{ startTest(test1Questions); });
-    document.getElementById('test2Btn').addEventListener('click', ()=>{ startTest(test2Questions); });
+    // Event listeners
+    document.getElementById('test1Btn').addEventListener('click', ()=> startTest(test1));
+    document.getElementById('test2Btn').addEventListener('click', ()=> startTest(test2));
 
     nextBtn.addEventListener('click', ()=>{
       if(!answered && canAnswer) {
         stopTimer();
         answered = true; canAnswer = false;
         student.answers[currentIndex] = -1;
-        showExplanation(-1);
+        showAnswerFeedback(-1);
       } else {
         if(currentIndex < currentQuestions.length - 1) {
           currentIndex++;
@@ -564,10 +583,14 @@
       }
     });
 
+    closeModal.addEventListener('click', ()=>{
+      modal.style.display = 'none';
+    });
+
     document.getElementById('showReviewBtn').addEventListener('click', ()=>{ buildReviewTable(); endScreen.style.display='none'; reviewScreen.style.display='block'; });
     document.getElementById('backToEndBtn').addEventListener('click', ()=>{ reviewScreen.style.display='none'; endScreen.style.display='block'; });
     document.getElementById('restartBtn').addEventListener('click', ()=>{
-      startScreen.style.display='block'; quizScreen.style.display='none'; endScreen.style.display='none'; reviewScreen.style.display='none'; stopTimer();
+      startScreen.style.display='block'; quizScreen.style.display='none'; endScreen.style.display='none'; reviewScreen.style.display='none'; stopTimer(); modal.style.display='none';
     });
   })();
 </script>
